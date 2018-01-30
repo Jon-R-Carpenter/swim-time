@@ -1,0 +1,77 @@
+﻿@model IEnumerable <TheSwimTimeSite.ObjectModels.Course>
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />;
+</head>
+<body>
+    <div id="multipleUsers">
+        <br />
+        <br />
+        @Html.ActionLink("Create", "Create", "Course", null, new { @style = "padding:10px 10px 10px 10px;text-decoration:none;color:white;background-color:red;" })
+        <br />
+        <br />
+        <br />
+        <table>
+                <tr>
+                    <th style="border:1px solid #dddddd;padding:8px; text-align:left;">
+                        &nbsp&nbsp&nbspTitle
+                    </th>
+                    <th  style="border:1px solid #dddddd;padding:8px; text-align:left;">
+                        Course Code
+                    </th>
+                    <th style="border:1px solid #dddddd;padding:8px; text-align:left;">
+                        startDayOfCourse
+                    </th>
+                    <th style="border:1px solid #dddddd;padding:8px; text-align:left;">
+                        DurationOfCourse
+                    </th>
+                    <th style="border:1px solid #dddddd;padding:8px; text-align:left;">
+                        HoursCourseRuns
+                    </th>
+                    <th style="border:1px solid #dddddd;padding:8px; text-align:left;">
+                        Checkout
+                    </th>
+                    <th></th>
+                </tr>
+            @foreach(var item in Model)
+            {
+                <tr>
+                    <td style="border:1px solid #dddddd;padding:8px; text-align:left;">
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td style="border:1px solid #dddddd;padding:8px; text-align:left;">
+                        @Html.DisplayFor(modelItem => item.courseCode)
+                    </td>
+                    <td style="border:1px solid #dddddd;padding:8px; text-align:left;">
+                        @item.DayString()
+                    </td>
+                    <td style="border:1px solid #dddddd;padding:8px; text-align:left;">
+                        <span>@item.DurationString()</span>
+                    </td>
+                    <td style="border:1px solid #dddddd;padding:8px; text-align:left;">
+                        <span>@item.TimeString()</span>
+                    </td>
+                    <td style="border:1px solid #dddddd;padding:8px; text-align:left;">
+                        @Html.DisplayFor(modelItem => item.CheckOut)
+                    </td>
+                    <td style="border:1px solid #dddddd;padding:8px; text-align:left;">
+                        @Html.ActionLink("Edit", "Edit", new { id = item.CRN }) |
+                        @Html.ActionLink("Enrollment", "Enroll", new { id = item.CRN })
+                    </td>
+                </tr>
+            }
+
+            </table>
+       
+            
+    </div>
+</body>
+</html>
+

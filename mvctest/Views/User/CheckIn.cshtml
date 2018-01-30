@@ -1,0 +1,81 @@
+﻿@model TheSwimTimeSite.Models.ViewModels.CheckInViewModel
+@using TheSwimTimeSite.ObjectModels
+
+
+@{
+    ViewBag.Title = ViewBag.UserName;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />;
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //submit
+
+           
+
+            $(':button').click(function () {
+                $("#Selected").val($(this).val());
+                $("form").submit();
+
+             });
+
+        })
+      
+    
+     
+        </script>
+</head>
+<body>
+    <div id="checkInBackGround">
+        <br />
+        <br />
+        <br />
+        <fieldset>
+            <legend align="left">Checking-In</legend>
+    
+
+            @using (Html.BeginForm())
+            {
+                @Html.HiddenFor(m => m.UserID)
+                @Html.HiddenFor(m => m.Classes)
+                @Html.HiddenFor(m => m.Types)
+                @Html.HiddenFor(m => m.Selected)
+
+                if (Model.Classes != null && Model.Classes.Count > 0)
+                {
+                    <span style="margin-right:15px;margin-left:-391px;">Check Into-Course</span>
+
+                    foreach (Course row in Model.Classes)
+                    {
+                        <input type="button" class="button-large" value="@row.Title"/>
+                    }
+                    <br /><br />
+                }
+                <span style="margin-right:43px;margin-left:-326px;">General Visit</span>
+                
+                if(Model.Types != null)
+                {
+                    foreach(VisitType row in Model.Types)
+                    {
+                        <input type="button" class="button-medium" value="@row.Title" />
+                    }
+                }
+
+
+                <br />
+                <br />
+                @Html.ActionLink("UserProfile", "UserProfile", new {id=Model.UserID },new {@style="text-decoration:none;color:blue" })
+            }
+        </fieldset>
+        <br />
+        <br/>
+        <br />
+        @Html.ActionLink("Home","Welcomee","Home",null,new {@style="text-decoration:none;color:blue" })
+    </div>
+</body>
+</html>
+

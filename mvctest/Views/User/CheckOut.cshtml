@@ -1,0 +1,70 @@
+﻿@model TheSwimTimeSite.ObjectModels.User
+
+
+
+@{
+    ViewBag.Title = "CheckOut";
+}
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />;
+    </head>
+    <body>
+        <div id="checkInBackGround">
+            <br />
+            <br />
+            <br />
+            <fieldset>
+
+                <legend align="left">@Model.FirstName @Model.LastName</legend>
+                               
+
+                <div style="padding: 10px; font-size: large;">
+                   
+                </div>
+                <div style="padding: 10px; font-size: large;">
+                  @{
+                      <span>Time represented in hours</span> 
+                      <br />
+                      <span>Total valid swimTimeHours: @ViewData["TotalHours"]</span>
+                  }
+                </div>
+                <br />
+                <div class="smaller-container">
+                    <div class="floatLeft" style="width: 65%;">
+                        <table class="no-borders" style="width: 95%;">
+                            <tr class="no-borders">
+                                <td align="left">@Html.ActionLink("Valid CheckOut","ValidCheckout", new {userID = @Model.UserID, associatedVisitID=@Model.AssociatedVisitID},new { @style="text-decoration:none;color:blue;"})</td>
+                                <td class="no-borders"> @Model.FirstName @Model.LastName is checking out from The Climbing Wall</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <br />
+                                    <br />
+                                    <br />
+                                </td>
+                            </tr>
+                            <tr class="no-borders">
+                                <td align="left">@Html.ActionLink("Cancel","Welcomee","Home",null,new { @style = "text-decoration:none;color:blue;" })</td>
+                                <td> Cancel check-out. Go back to Check-in Screen.</td>
+                            </tr>
+                            <tr class="no-borders">
+                                <td class="no-borders"><div style="font-size:smaller;">@Html.ActionLink("Invalid Checkout","InvalidCheckout",new {userID=@Model.UserID, associatedVisitID=@Model.AssociatedVisitID}, new { @style = "text-decoration:none;color:blue;" })</div></td>
+                                <td>Staff Override: @Model.FirstName @Model.LastName forgot to check-out or was not checked out properly.</td>
+                               
+                            </tr>
+                        </table>
+                    </div>
+                   
+                    <div class="clear"></div>
+                </div>
+
+            </fieldset>
+
+   
+        </div>
+    </body>
+</html>
+
+

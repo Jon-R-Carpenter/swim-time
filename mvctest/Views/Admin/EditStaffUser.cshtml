@@ -1,0 +1,61 @@
+﻿@model TheSwimTimeSite.ObjectModels.StaffUser
+
+
+@{
+    ViewBag.Title = "EditStaffUser";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />;
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        <div id="editStaffBackground">
+         
+
+            <br />
+            <h3> User name: @Html.TextAreaFor(model => model.UserName)</h3>
+            <br />
+
+            <table>
+                <tr>
+                    <th>
+                        @Html.LabelFor(model => model.ActiveAccount)
+                    </th>
+                    <td>
+                        @Html.EditorFor(model => model.ActiveAccount)
+                    </td>
+                </tr>
+                <tr>
+                    <th><br /></th>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.LabelFor(model => model.IsAdmin)
+                    </th>
+                    <td>
+                        @Html.EditorFor(model => model.IsStaff)
+                    </td>
+                </tr>
+                <tr>
+                    <th><br /></th>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.LabelFor(model => model.IsStaff)
+                    </th>
+                    <td>@Html.EditorFor(model => model.IsStaff)
+                </tr>
+            </table>
+            <br />
+            <input type="submit" value="Save Changes" style="padding-right:12px;padding-left:12px;padding-top:8px;padding-bottom:8px;color:white;background-color:red;border:none;" />
+            @Html.ActionLink("AdminIndex", "AdminIndex", "Admin", null, new { @class = "button" })
+        </div>
+    }
+
+</body>
+</html>
+
+

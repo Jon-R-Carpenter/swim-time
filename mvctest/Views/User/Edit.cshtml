@@ -1,0 +1,169 @@
+﻿@model TheSwimTimeSite.Models.ViewModels.CreateEditUserViewModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />;
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        <div id="editBackground">
+            @Html.ValidationSummary(true)
+            <br />
+            <br />
+            <br />
+            <fieldset>
+                <legend align="left">Edit User</legend>
+                <table align="left" style="width:40%">
+                    @Html.HiddenFor(m => m.Editing.UserID)
+                    <tr>
+                        <th align="left">First Name</th>
+                        <td>
+                            @Html.EditorFor(model => model.Editing.FirstName)
+                            @Html.ValidationMessageFor(model => model.Editing.FirstName)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <br />
+
+                        </td>
+                    </tr>
+                    <tr>
+
+                        <th align="left">Last Name</th>
+                        <td>
+                            @Html.EditorFor(model => model.Editing.LastName)
+                            @Html.ValidationMessageFor(model => model.Editing.LastName)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <br />
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <th align="left">Student ID</th>
+                        <td>
+                            @Html.EditorFor(model => model.Editing.StudentID)
+                          @Html.ValidationMessageFor(model => model.Editing.StudentID)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <br />
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <th align="left">Card Scan</th>
+                        <td>
+                            @Html.EditorFor(model => model.Editing.CardScan)
+                        @Html.ValidationMessageFor(model => model.Editing.CardScan)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <br />
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <th align="left">Phone Number</th>
+                        <td>
+                            @Html.EditorFor(model => model.Editing.Phone)
+
+                            @Html.ValidationMessageFor(model => model.Editing.Phone)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <br />
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <th align="left">Email</th>
+                        <td>
+                            @Html.EditorFor(model => model.Editing.Email)
+                            @Html.ValidationMessageFor(model => model.Editing.Email)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <br />
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <th align="left">Class In School</th>
+                        <td>
+                            @Html.DropDownListFor(model => model.Editing.ClassInSchool,
+                        new SelectList(Model.Classes), " ")
+                            @Html.ValidationMessageFor(model => model.Editing.ClassInSchool)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <br />
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <th align="left">User Type</th>
+                        <td>
+                            @Html.DropDownListFor(model => model.Editing.UserType,
+                    new SelectList(Model.UserTypes), " ")
+                            @Html.ValidationMessageFor(model => model.Editing.UserType)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <br />
+
+                        </td>
+                    </tr>
+                    <tr><td colspan="3" align="left">Staff Editing  @Html.DropDownListFor(m => m.StaffID, Model.Staff, " -- ")@Html.ValidationMessageFor(m => m.StaffID)</td></tr>
+                    <tr>
+                        <td>
+                            <br />
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan=2><input type="submit" class="gen-submit" value="Save" style="float:right;color:white;background-color:red;border:none;padding:10px;padding-left:19px;padding-right:25px;" /></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <br />
+
+                        </td>
+                    </tr>
+                </table>
+                <table style="width:50%; margin-right:5%; height:50%;" align="right">
+                    <tr>
+                        <th>Comments</th>
+                    </tr>
+                    <tr>
+                        <td style="height:100%;">
+                            @Html.TextAreaFor(model => model.Editing.Comments, new { style = "height:100%; width:100%;" })
+                            <!--Validation Message-->
+                        </td>
+                    </tr>
+                </table>
+
+            </fieldset>
+            <br />
+            <div class="setup">
+                @Html.ActionLink("Profile", "UserProfile", "User", null, new { @class = "button" })
+            </div>
+        </div>
+    }
+</body>
+</html>
+

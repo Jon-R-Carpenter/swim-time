@@ -1,0 +1,74 @@
+﻿@model IEnumerable <TheSwimTimeSite.ObjectModels.SwimTime>
+
+
+@{
+    ViewBag.Title = "SwimTime";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />;
+</head>
+<body>
+    <div id="swimTimebackground">
+        <br />
+        <h2 style="margin-top:-500px;margin-right:750px;">SwimTime</h2>
+        <p>
+            @Html.ActionLink("Create New", "CreateSwimTime", null, new {@style = "padding:10px 10px 10px 10px;text-decoration:none;color:white;background-color:red;" })
+        </p>
+        <br />
+        <table style="border-collapse:collapse;width:98%;">
+            <tr>
+                <th style="border:1px solid #dddddd;padding:8px; text-align:left;">
+                    <p>Course</p>
+                </th>
+             
+                <th style="border:1px solid #dddddd;padding:8px; text-align:left;">
+                    <p>Min Hours / Visit</p>
+                </th>
+                <th style="border:1px solid #dddddd;padding:8px; text-align:left;">
+                    <p>Max Hours / Visit</p>
+                </th>
+                <th style="border:1px solid #dddddd;padding:8px; text-align:left;">
+                    <p>Start Date</p>
+                </th>
+                <th style="border:1px solid #dddddd;padding:8px; text-align:left;">
+                    <p>End Date</p>
+                </th>
+               
+                <th></th>
+            </tr>
+         @foreach (var item in Model)
+         {
+            <tr>
+                <td style="border:1px solid #dddddd;padding:8px; text-align:left;">
+                    @Html.DisplayFor(modelItem => item.Course.courseCode)
+                </td>
+              
+                <td style="border:1px solid #dddddd;padding:8px; text-align:left;">
+                    @Html.DisplayFor(modelItem => item.MinHoursPerVisit)
+                </td>
+                <td  style="border:1px solid #dddddd;padding:8px; text-align:left;">
+                    @Html.DisplayFor(modelItem => item.MaxHoursPerVisit)
+                </td>
+                <td style="border:1px solid #dddddd;padding:8px; text-align:left;"> 
+                    @Html.DisplayFor(modelItem => item.Start)
+                </td>
+                <td style="border:1px solid #dddddd;padding:8px; text-align:left;">
+                    @Html.DisplayFor(modelItem => item.End)
+                </td>
+              
+                <td style="border:1px solid #dddddd;padding:8px; text-align:left;">
+                    @Html.ActionLink("Edit", "EditSwimTime", new { id = item.SwimTimeID })
+                </td>
+            </tr>
+         }
+        </table>
+        <br />
+        <br />
+        @Html.ActionLink("Setup Home", "SetUpIndex", null, new {@style = "padding:10px 10px 10px 10px;text-decoration:none;color:white;background-color:red;" })
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,90 @@
+﻿@model TheSwimTimeSite.Models.ViewModels.CreateEditSwimTimeRulesViewModel
+
+
+@{
+    ViewBag.Title = "createSwimTime";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />;
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+    <script src="@Url.Content("~/Scripts/JQuery1.6.2.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery-ui-1.8.16.custom.min.js")" type="text/javascript"></script>
+
+
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('.datepicker').datepicker();
+        });
+
+    </script>
+</head>
+<body>
+   @using (Html.BeginForm())
+   {
+       @Html.ValidationSummary(true)
+    <div id="visitBackground">
+        <br />
+        <fieldset style="margin-top:-500px;" align="left">
+            <legend>SwimTime</legend>
+            <table>
+                <tr>
+                    <td>
+                        Min-Hours
+                        @Html.EditorFor(model => model.Creating.MinHoursPerVisit)
+                        @Html.ValidationMessageFor(model => model.Creating.MinHoursPerVisit)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Max-Hours
+                        @Html.EditorFor(model => model.Creating.MaxHoursPerVisit)
+                        @Html.ValidationMessageFor(model => model.Creating.MaxHoursPerVisit)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Start Date
+                        @Html.TextBoxFor(model => model.Creating.Start,
+                                  new { @class = "datepicker" })
+                        @Html.ValidationMessageFor(model => model.Creating.Start)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        End Date
+                        @Html.TextBoxFor(model => model.Creating.End,
+                                  new { @class = "datepicker" })
+                        @Html.ValidationMessageFor(model => model.Creating.End)
+                    </td>
+                </tr>
+               
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.Creating.Course)
+                        @Html.DropDownListFor(m => m.Creating.Course.CRN, Model.Course, "--")
+                        @Html.ValidationMessageFor(model => model.Creating.Course)
+
+                    </td>
+                </tr>
+             
+                <tr>
+                    <td>
+                        <br />
+                        <input type="submit" value="Save" style="border:none;color:white;background-color:red;padding:4px 20px 4px 20px;" />
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+
+        <br />
+        @Html.ActionLink("SwimTime", "SwimTime", null, new { @style = "padding:10px 10px 10px 10px;text-decoration:none;color:white;background-color:red;" })
+    </div>
+   }
+</body>
+</html>

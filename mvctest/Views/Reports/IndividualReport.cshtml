@@ -1,0 +1,99 @@
+﻿@model TheSwimTimeSite.ObjectModels.Report
+
+
+@{
+   }
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />;
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+    <script src="@Url.Content("~/Scripts/JQuery1.6.2.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery-ui-1.8.16.custom.min.js")" type="text/javascript"></script>
+
+   
+</head>
+<body>
+    @using (Html.BeginForm()){ 
+    <div id="certifyBackground">
+        <div id="reports-left" style="background-color:#F0F0F0">
+            <br />
+            <fieldset>
+                <legend>Generate Individual Student Report: </legend>
+                <!-- Enter new stuff BELOW this comment -->
+                <div class="small-container">
+                    <div class="editor-label">
+                        Report Start Date
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.Start,
+           new { @class = "datepicker" })
+                        @Html.ValidationMessageFor(model => model.Start)
+                    </div>
+
+                    <div class="editor-label">
+                        Report End Date
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.Finish,
+                          new { @class = "datepicker" })
+                        @Html.ValidationMessageFor(model => model.Finish)
+                    </div>
+
+                    <div class="editor-label">
+                        Student First Name
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.First)
+                        @Html.ValidationMessageFor(model => model.First)
+                    </div>
+
+                    <div class="editor-label">
+                        Student Last Name
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.Last)
+                        @Html.ValidationMessageFor(model => model.Last)
+                    </div>
+
+                    <div class="editor-label">
+                        File Name
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.FileName)
+                        @Html.ValidationMessageFor(model => model.FileName)
+                    </div>
+                    <div>
+                        @Html.EditorFor(model => model.IncludeOuts) Include Checkouts/Invalids
+                    </div>
+
+                    <div style="padding: 30px;">
+                        <input type="submit" value="Generate Report" class="gen-submit" />
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+        <div id="reports-right" style="background-color:#F0F0F0">
+            <fieldset>
+                <legend>Reports Home </legend>
+                <div class="smaller-container">
+                    <table class="no-borders" style="width: 100%;">
+                        <tr class="no-borders"><td class="no-side-borders">@Html.ActionLink("General Reports", "ReportIndex", null, new { @class = "button" })</td></tr>
+
+
+
+                    </table>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+    
+    
+    }
+</body>
+</html>

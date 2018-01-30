@@ -1,0 +1,37 @@
+﻿@model mvctest.Models.ViewModels.AccountViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    @using (Html.BeginForm("Login","Account",FormMethod.Post))
+    {
+        @ViewBag.Error
+        <table style="margin-top:220px;margin-left:539px">
+            <tr>
+                <td>@Html.LabelFor(model => model.Account.userName)</td>
+                <td>@Html.TextAreaFor(model=> model.Account.userName)</td>
+            </tr>
+            
+            <tr>
+                   
+                    <td>@Html.LabelFor(model => model.Account.Password,new {style="display:none;"})</td>
+                    <td>@Html.PasswordFor(model => model.Account.Password, new {@Value="123", style="display:none;" })</td>
+                    
+            </tr>
+            <tr>
+                <td>&nbsp</td>
+                <td><input type="submit" value="Login"/></td>
+            </tr>
+        </table>
+    }
+</body>
+</html>

@@ -1,0 +1,86 @@
+﻿@model TheSwimTimeSite.Models.ViewModels.CreateEditCourseViewModel
+
+
+@{
+    ViewBag.Title = "Create";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />;
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+    <script src="@Url.Content("~/Scripts/JQuery1.6.2.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery-ui-1.8.16.custom.min.js")" type="text/javascript"></script>
+
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+        <div id="multipleUsers">
+            <br />
+            <fieldset>
+                <table>
+                    <tr>
+                        <td align="left">
+                            Title&nbsp&nbsp
+                            @Html.EditorFor(model => model.Creating.Title)
+                            @Html.ValidationMessageFor(model => model.Creating.Title)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="left">
+                            Course Code
+                            @Html.EditorFor(model => model.Creating.courseCode)
+                            @Html.ValidationMessageFor(model => model.Creating.courseCode)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="left">
+                            Term
+                            @Html.DropDownListFor(m => m.Creating.Term.TermID, Model.TermList, "--")
+                            @Html.ValidationMessageFor(model => model.Creating.Term.TermID)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="left">
+                            weekCourseStarts
+                            @Html.DropDownListFor(m => m.Creating.DayOfWeek, Model.DaysList, "--")
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="left">
+                            courseDuration
+                            @Html.DropDownListFor(m => m.Creating.Duration, Model.DurationList, "--")
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="left">
+                            courseRunningTime
+                            @Html.DropDownListFor(m => m.Creating.TimeOfDay, Model.TimeList, "--")
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="left">
+                            Require Checkout
+                            @Html.EditorFor(model => model.Creating.CheckOut)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="submit" />
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+            <br />
+            <br />
+            @Html.ActionLink("Courses", "Index", "Course", null, new { @class = "button" })
+        </div>
+    }
+</body>
+</html>
+
+

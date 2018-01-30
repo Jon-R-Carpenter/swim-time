@@ -1,0 +1,110 @@
+﻿@model TheSwimTimeSite.Models.ViewModels.EnrollmentViewModel
+
+
+@{
+    ViewBag.Title = "Enroll";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />;
+    <script src="https://code.jquery.com/jquery-1.6.2.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        var presistUsers;
+        $(document).ready(function () {
+            //enroll button
+            $("#enroller").click(function () {
+                var temp = $("#NotEnrolled option[value=" + $("#NotEnrolled").val() + "]"); //get selected object
+                $("#NotEnrolled option[value=" + $("#NotEnrolled").val() + "]").remove();
+                $("#Enrolled").append($("<option>").attr('value', temp.val()).text(temp.text()));
+            });
+            $("#deenroller").click(function () {
+                var temp = $("#Enrolled option[value=" + $("#Enrolled").val() + "]"); //get selected object
+                $("#Enrolled option[value=" + $("#Enrolled").val() + "]").remove();
+                $("#NotEnrolled").append($("<option>").attr('value', temp.val()).text(temp.text()));
+            });
+            //setup post selection to pass results to controller
+            $("#poster").click(function () {
+                $("#Enrolled option").each(function () {
+                    $(this).attr("selected", true);
+                });
+            });
+            //setup search box
+            $("#searcher").keyup(function () {
+                $("#loading").show();
+                clearUsers(); //clear users
+                GetUsers($("#searcher").val());
+            });
+            //get initial list of users
+            $("#loading").show();
+            presistUsers = @Html.Raw(Model.JsonUsers) ; //get list of users
+            $("#loading").hide();
+            clearUsers();
+            GetUsers("");
+        });
+        function clearUsers() {
+            $("#NotEnrolled").children().remove();
+        }
+        function GetUsers(search) {//get a list of users filtered and searched
+            $("#loading").show();
+            var filteredList = presistUsers.slice();
+            if (search.length != 0) {
+                var len = filteredList.length; //track length
+                for (var i = filteredList.length - 1; i >= 0; i--) {//loop through complete list once (lineral traversal)
+                    if (filteredList[i].LastName.substring(0, search.length).toUpperCase() != search.toUpperCase()) {
+                        filteredList.splice(i, 1); //splice the array
+                    }
+                }
+            }
+            //alert(filteredList.length);
+            for (pos = 0; pos < filteredList.length; pos++) {
+                $("#NotEnrolled").append("<option value='" + filteredList[pos].UserID + "'>" + filteredList[pos].FirstName + " " + filteredList[pos].LastName + "</option>");
+            }
+            $("#loading").hide();
+        }
+
+
+    </script>
+  
+</head>
+<body>
+   @using (Html.BeginForm())
+   {
+    @Html.HiddenFor(model => model.CourseID)
+    <div id="certifyBackground">
+        <br />
+        <fieldset>
+            <legend>@Model.Editing.Title @Model.Editing.CRN</legend>
+            <center>
+                <table>
+                    <tr>
+                        <td>
+                            Search by Last Name: <input id="searcher" type="text" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img id="loading" src="@Url.Content("~/Images/loading.gif")" alt="working..." />
+                            <select id="NotEnrolled" size="10" style="width:100px;"></select>
+                        <td>
+                            <input id="enroller" type="button" value=" Enroll >> " /><br />
+                            <input id="deenroller" type="button" value="<< UnEnroll" />
+                        </td>
+                        <td>@Html.ListBox("Enrolled", Model.Enrolled)</td>
+                        
+                                
+                    </tr>
+                    <tr>
+                        <td><input id="poster" type="submit" value="Save" style="float:right;" /></td>
+                    </tr>
+                </table>
+            </center>
+        </fieldset>
+        @Html.ActionLink("Courses", "Index", new { @class = "button" })
+
+    </div>
+   }
+</body>
+</html>
+
+

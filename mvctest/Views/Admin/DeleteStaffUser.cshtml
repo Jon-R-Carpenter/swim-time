@@ -1,0 +1,37 @@
+﻿@model TheSwimTimeSite.ObjectModels.StaffUser
+
+
+@{
+    ViewBag.Title = "DeleteStaffUser";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />;
+</head>
+<body>
+    @if (!IsPost)
+    {
+        <div id="constructionBackground">
+            <br />
+            <fieldset>
+                <legend align="left">Are you sure you want to delete @Model.UserName?</legend>
+                <br />
+                <br />
+                @Html.ActionLink("Yes", "DeleteUserr", new { @Model.UserName})
+                @Html.ActionLink("No", "AdminIndex", "Admin", null, new { @class = "button" })
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+            </fieldset>
+        </div>
+    }
+    
+    
+
+</body>
+</html>
+

@@ -1,0 +1,51 @@
+﻿@model TheSwimTimeSite.ObjectModels.Report
+
+
+@{
+    ViewBag.Title = "ReportIndex";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />;
+</head>
+<body>
+   @using (Html.BeginForm())
+   {
+    <div id="reportbackground">
+        <h2 id="reportTitle">Reports</h2>
+        <fieldset>
+            <legend>Generate General Usage Report</legend>
+            <p>Report Start Date</p>
+            @Html.TextBoxFor(model => model.Start, new {@class ="reporttextboxes"})
+            
+            <p>Report End Date</p>
+            @Html.TextBoxFor(model => model.Finish, new { @class = "reporttextboxes" })
+            <p>File Name</p>
+            @Html.TextBoxFor(model => model.FileName)
+            <p></p>
+            <input type="checkbox" />Include CheckOut/Invalids
+            <p></p>
+            <input type="submit" value="Generate Report" />
+        </fieldset>
+        <div id="otherReportTools">
+            <fieldset>
+                <legend>Other Reporting Tools</legend>
+                @Html.ActionLink("IndividualReporting", "IndividualReport", "Reports", null, new { @class = "button" })
+                <p></p>
+                @Html.ActionLink("Class Reporting", "classReport", "Reports", null, new { @class = "button" })
+                <p></p>
+                @Html.ActionLink("Trend Reporting", "TrendReport", "Reports", null, new { @class = "button" })
+            </fieldset>
+        </div>
+        <div id="reportHomeButton">
+            <button>Home</button>
+        </div>
+
+    </div>
+   }
+</body>
+</html>
+
+
+

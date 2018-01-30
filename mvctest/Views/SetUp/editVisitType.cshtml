@@ -1,0 +1,49 @@
+﻿@model TheSwimTimeSite.ObjectModels.VisitType
+
+
+@{
+    ViewBag.Title = "editVisitType";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />;
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+    <div id="visitBackground">
+
+        <fieldset style="margin-top:-450px;">
+            @Html.HiddenFor(model => model.VisitTypeID)
+
+            @Html.LabelFor(model => model.Title)
+            @Html.EditorFor(model => model.Title)
+            <br />
+            <br />
+            @Html.LabelFor(model => model.Description)
+            @Html.EditorFor(model => model.Description)
+            <br />
+            <br />
+
+
+            @Html.LabelFor(model => model.Active)
+            @Html.EditorFor(model => model.Active)
+
+            <br />
+            <br />
+            <input type="submit" value="Create" />
+        </fieldset>
+        <br />
+        <br />
+        @Html.ActionLink("Visit Types", "visitType", null, new { @style = "padding:10px 10px 10px 10px;text-decoration:none;color:white;background-color:red;" })
+
+
+
+      
+    </div>
+    }
+</body>
+</html>
+

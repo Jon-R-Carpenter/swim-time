@@ -1,0 +1,155 @@
+﻿
+@model TheSwimTimeSite.Models.ViewModels.CreateEditUserViewModel
+    
+
+
+@{
+    ViewBag.Title = "Create User";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />;
+    <script src="@Url.Content("~/Scripts/JQuery1.6.2.js")" type="text/javascript"></script>
+    <script type="text/javascript">
+        var data = false;
+        function checkName() {
+            if (!($("#Editing_LastName").val() === "" || $("#Editing_FirstName").val() === "")) {
+                $.getJSON("UserExistsByName/" + $("#Editing_LastName").val() + "/" + $("#Editing_FirstName").val(), data, function (data) {
+                    if (data.exists) {
+                        $(".nameWarning").fadeIn();
+                    } else {
+                        $(".nameWarning").fadeOut();
+                    }
+                });
+            } else {//one of the name textboxes is empty
+                $(".nameWarning").fadeOut();
+            }
+        }
+
+
+
+        $(document).ready(function () {
+            $("#nameWarning").hide();
+            $("#Editing_FirstName").keyup(function () { checkName(); });
+            $("#Editing_LastName").keyup(function () { checkName(); });
+            checkName();//check name for returning validation errors prefilled form
+        });
+    </script>
+
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+        <div id="newuser">
+            <h2 id="createUser">Create User</h2>
+            <fieldset>
+                <legend>New User</legend>
+                <center>
+                    <table>
+                        <tr>
+                            <th class="newusertablewords">First Name</th>
+                            <td>
+                                @Html.EditorFor(model => model.Editing.FirstName)
+                                @Html.ValidationMessageFor(model => model.Editing.FirstName)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><div class="newusergap"></div></td>
+                        </tr>
+                        <tr>
+                            <th class="newusertablewords">Last Name<img class="nameWarning" alt="*" src="@Url.Content("~/Images/warning.png")" /></th>
+                            <td>@Html.EditorFor(model => model.Editing.LastName)</td>
+                            @Html.ValidationMessageFor(model => model.Editing.LastName)
+                        </tr>
+                        <tr>
+                            <td><div class="newusergap"></div></td>
+                        </tr>
+                        <tr>
+                            <th class="newusertablewords">Student ID</th>
+                            <td>@Html.EditorFor(model => model.Editing.StudentID)</td>
+                            @Html.ValidationMessageFor(model => model.Editing.StudentID)
+                        </tr>
+                        <tr>
+                            <td><div class="newusergap"></div></td>
+                        </tr>
+                        <tr>
+                            <th class="newusertablewords">Card Scan</th>
+                            <td>@Html.EditorFor(model => model.Editing.CardScan)</td>
+                            @Html.ValidationMessageFor(model => model.Editing.CardScan)
+                        </tr>
+                        <tr>
+                            <td><div class="newusergap"></div></td>
+                        </tr>
+                        <tr>
+                            <th class="newusertablewords">Phone Number</th>
+                            <td>@Html.EditorFor(model => model.Editing.Phone)</td>
+                            @Html.ValidationMessageFor(model => model.Editing.Phone)
+                        </tr>
+                        <tr>
+                            <td><div class="newusergap"></div></td>
+                        </tr>
+                        <tr>
+                            <th class="newusertablewords">Email</th>
+                            <td>@Html.EditorFor(model => model.Editing.Email)</td>
+                            @Html.ValidationMessageFor(model => model.Editing.Email)
+                        </tr>
+                        <tr>
+                            <td><div class="newusergap"></div></td>
+                        </tr>
+                        <tr>
+                            <th class="newusertablewords">User Type</th>
+                            <td>
+                                @Html.DropDownListFor(model => model.Editing.UserType,
+    new SelectList(Model.UserTypes), " ")
+                                @Html.ValidationMessageFor(model => model.Editing.UserType)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><div class="newusergap"></div></td>
+                        </tr>
+                        <tr>
+                            <th class="newusertablewords">Class in School</th>
+                            <td>
+                                @Html.DropDownListFor(model => model.Editing.ClassInSchool,
+    new SelectList(Model.Classes), " ")
+                                @Html.ValidationMessageFor(model => model.Editing.ClassInSchool)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><div class="newusergap"></div></td>
+                        </tr>
+                        <tr>
+                            <th class="newusertablewords">Staff Creator</th>
+                            <td>
+                                @Html.DropDownListFor(m => m.StaffID, Model.Staff, " -- ")
+                                @Html.ValidationMessageFor(model => model.Editing.Staff)
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <td colspan="2" rowspan="2">
+                                <img class="nameWarning" alt="*" src="@Url.Content("~/Images/warning.png")" />
+                                
+                                <input type="submit" class="button" />
+                                <span class="nameWarning">A User with the same First and Last name already exists<br />in the database</span>
+                            </td>
+                        </tr>
+
+                    </table>
+                </center>
+            </fieldset>
+
+            <div>
+                <br />
+                @Html.ActionLink("Home", "Welcomee", "Home", null, new { @class = "button" })
+            </div>
+        </div>
+    }
+
+</body>
+</html>
+

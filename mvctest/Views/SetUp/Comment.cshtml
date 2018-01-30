@@ -1,0 +1,50 @@
+﻿@model IEnumerable<TheSwimTimeSite.ObjectModels.Comment>
+
+
+@{
+    ViewBag.Title = "Comment";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />;
+</head>
+<body>
+    <div id="background">
+        <center>
+            <table style="margin-top:-490px;border-collapse:collapse;width:98%;">
+                <tr>
+                    <th style="border:1px solid #dddddd;padding:8px; text-align:left;">
+                        Title
+                    </th>
+                    <th style="border:1px solid #dddddd;padding:8px; text-align:left;">
+                        Text
+                    </th>
+                    <th style="border:1px solid #dddddd;padding:8px; text-align:left;">
+                        DatePosted
+                    </th>
+                    <th></th>
+                </tr>
+               @foreach (var item in Model)
+               {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Text)
+                    </td>
+                    <td>
+                        <span>@item.DatePosted.ToShortDateString()</span>
+                    </td>
+                </tr>
+               }
+            </table>
+            <br />
+        </center>
+        @Html.ActionLink("Setup Home", "SetUpIndex", null, new { @class = "button" })
+    </div>
+</body>
+</html>
+

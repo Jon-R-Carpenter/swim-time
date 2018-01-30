@@ -1,0 +1,63 @@
+﻿@model TheSwimTimeSite.Models.RegisterModel
+
+
+@{
+    ViewBag.Title = "RegisterUser";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />;
+</head>
+<body>
+   @using (Html.BeginForm())
+   {
+    <div id="editStaffBackground">
+        <br />
+        <h2>Register a new staff member</h2>
+        <br />
+        <table>
+            <tr>
+                <th>@Html.LabelFor(model => model.UserName)</th>
+                <td>@Html.TextBoxFor(model => model.UserName)@Html.ValidationMessageFor(model => model.UserName)</td>
+            </tr>
+            <tr>
+
+                <th><br /></th>
+            </tr>
+            <tr>
+                <th>
+                    @Html.LabelFor(model => model.IsAdmin)
+                </th>
+                <td>
+                    @Html.CheckBoxFor(model => model.IsAdmin)
+                </td>
+            </tr>
+
+
+            <tr>
+                <th><br /></th>
+            </tr>
+            <tr>
+                <th>
+                    @Html.LabelFor(model => model.IsStaff)
+                </th>
+                <td>
+                    @Html.CheckBoxFor(model => model.IsStaff)
+                </td>
+            </tr>
+
+
+            <tr>
+                <th><br /></th>
+            </tr>
+            <tr>
+                <th><input type="submit" value="Register" style="float:right;color:white;background-color:red;padding-left:9px;padding-right:9px;padding-bottom:4px;padding-top:4px;border:none;" /></th>
+            </tr>
+        </table>
+    </div>
+   }
+</body>
+</html>
+
+

@@ -1,0 +1,75 @@
+﻿@model TheSwimTimeSite.Models.ViewModels.HomeViewModel
+
+
+@{
+
+    ViewBag.Title = "Welcomee";
+}
+
+<!DOCTYPe html>
+<html>
+<head>
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />;
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#lastname").keypress(function (e) {
+                if (e.keyCode== 13) {
+                    window.location = "@Url.Content("~/User/UserSearchByLastname")" + "?lastname=" + $(this).val();
+                }
+            })
+        })
+        $(document).ready(function () {
+            $("#cardscanfield").keypress(function (e) {
+                if (e.keyCode == 13) {
+                    window.location = "@Url.Content("~/User/UserSearchByCardscan")" + "?cardscan=" + $(this).val();
+                }
+            })
+        })
+        $(document).ready(function () {
+            $("#selectableTable tr").click(function () {
+                var href = $(this).find("a").attr("href");
+                if (href) {
+                    window.location = href;
+                }
+            });
+        });
+      
+    </script>
+</head>
+<body>
+   
+    
+  
+
+         <div id="backgroundd">
+            <div id="left-checkin">
+                <fieldset>
+                    <legend>Swim Time Check-In</legend>
+                    <input class="textbox" id="lastname" type="text" /><span>       Search by Last Name</span>
+                  
+                </fieldset>
+            </div>
+            <div id="right-checkin">
+                <fieldset>
+                    <legend>Current Users</legend>
+                           
+                                
+                                    @foreach (var user in Model.UsersIn)
+                                    {
+                                        @Html.ActionLink(user.FirstName + " " + user.LastName, "CheckOut", "User", new { userID = user.UserID },  new { @style = "padding:1px 10px 1px 10px;text-decoration:none;color:white;background-color:red;" });
+                                    }
+                                
+                            
+                            
+                       
+                 </fieldset>
+            </div>
+        </div>
+
+
+    
+   
+    
+</body>
+</html>

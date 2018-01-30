@@ -1,0 +1,67 @@
+﻿@model IEnumerable<TheSwimTimeSite.ObjectModels.VisitType>
+
+
+@{
+    ViewBag.Title = "visitType";
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />;
+</head>
+<body>
+
+    <div id="certifyBackground">
+        <br />
+        @Html.ActionLink("Create New","createVisitType",null,new { @style = "padding:10px 10px 10px 10px;text-decoration:none;color:white;background-color:red;" })
+        <br />
+        <br />
+
+        <table style="width:80%;">
+
+            <tr>
+                <th style="border:1px solid #dddddd;padding:8px; text-align:left;">
+                    Title
+                </th>
+             
+                <th style="border:1px solid #dddddd;padding:8px; text-align:left;">
+                    Description
+                </th>
+                <th style="border:1px solid #dddddd;padding:8px; text-align:left;">
+                    Active
+                </th>
+               
+                <th></th>
+            </tr>
+            @foreach(var item in Model)
+            {
+                <tr>
+                    <td style="border:1px solid #dddddd;padding:8px; text-align:left;">
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                 
+                    <td style="border:1px solid #dddddd;padding:8px; text-align:left;">
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td style="border:1px solid #dddddd;padding:8px; text-align:left;">
+                        @Html.DisplayFor(modelItem => item.Active)
+                    </td>
+                    <td style="border:1px solid #dddddd;padding:8px; text-align:left;">
+                        @Html.ActionLink("Edit", "EditVisitType", new { id = item.VisitTypeID })
+                    </td>
+                </tr>
+            }
+        </table>
+        <br />
+        <br />
+        @Html.ActionLink("Setup Home", "SetUpIndex", null, new { @style = "padding:10px 10px 10px 10px;text-decoration:none;color:white;background-color:red;" })
+
+    </div>
+
+</body>
+</html>
+
+
+

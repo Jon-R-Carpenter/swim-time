@@ -1,0 +1,73 @@
+﻿@model  IEnumerable<TheSwimTimeSite.ObjectModels.StaffUser>
+
+
+@{
+    ViewBag.Title = "AdminIndex";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />;
+</head>
+<body>
+    <div class="large-container">
+        <div id="test">
+            <p>Manage Users</p>
+        </div>
+        <div id="table">
+            @Html.ActionLink("Register Staff", "RegisterUser","Admin",null,new {@class="button" })
+            <p></p>
+            <p></p>
+            <table>
+                <tr>
+                    <th>
+
+                    </th>
+                    <th>
+                        User Name
+                    </th>
+                    <th>
+                        Last Login Date
+                    </th>
+                    <th>
+                        Active Account
+                    </th>
+                    <th>
+                        Admin
+                    </th>
+                    <th>
+                        Staff
+                    </th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            [@Html.ActionLink("Edit", "EditStaffUser",new {item.UserName })|@Html.ActionLink("Delete", "DeleteStaffUser", new {item.UserName })]
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UserName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LastLoginDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ActiveAccount)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem=> item.IsAdmin)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IsStaff)
+                        </td>
+                    </tr>
+                }
+               
+            </table>
+        </div>
+     
+    </div>
+</body>
+</html>
+
+

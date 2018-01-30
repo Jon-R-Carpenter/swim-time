@@ -1,0 +1,75 @@
+﻿@model IEnumerable <TheSwimTimeSite.ObjectModels.Term>
+
+
+
+@{
+    ViewBag.Title = "Terms";
+
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />;
+</head>
+<body>
+    
+    <div id="certifyBackground">
+        <br />
+        @Html.ActionLink("Create New","CreateTerm","SetUp",null,new { @style = "padding:10px 10px 10px 10px;text-decoration:none;color:white;background-color:red;" })
+        <br />
+        <br />
+
+        <table style="width:80%;">
+            
+            <tr>
+                <th style="border:1px solid #dddddd;padding:8px; text-align:left;">
+                    Quarter
+                </th>
+                <th style="border:1px solid #dddddd;padding:8px; text-align:left;">
+                    Year
+                </th>
+                <th style="border:1px solid #dddddd;padding:8px; text-align:left;">
+                    Start
+                </th>
+                <th style="border:1px solid #dddddd;padding:8px; text-align:left;">
+                    End
+                </th>
+                <th style="border:1px solid #dddddd;padding:8px; text-align:left;">
+                    Title
+                </th>
+                <th></th>
+            </tr>
+           @foreach(var item in Model)
+           {
+               <tr>
+                   <td style="border:1px solid #dddddd;padding:8px; text-align:left;">
+                       @Html.DisplayFor(modelItem => item.Quarter)
+                   </td>
+                   <td style="border:1px solid #dddddd;padding:8px; text-align:left;">
+                       @Html.DisplayFor(modelItem => item.Year)
+                   </td>
+                   <td style="border:1px solid #dddddd;padding:8px; text-align:left;">
+                       @Html.DisplayFor(modelItem => item.Start)
+                   </td>
+                   <td style="border:1px solid #dddddd;padding:8px; text-align:left;">
+                       @Html.DisplayFor(modelItem => item.Endd)
+                   </td>
+                   <td style="border:1px solid #dddddd;padding:8px; text-align:left;">
+                       @Html.DisplayFor(modelItem => item.Title)
+                   </td>
+                   <td style="border:1px solid #dddddd;padding:8px; text-align:left;">
+                       @Html.ActionLink("Edit", "editTerm", new { id = item.TermID })
+                   </td>
+               </tr>
+           }
+        </table>  
+        <br />
+        <br />
+        @Html.ActionLink("SetUpHome", "SetUpIndex",null, new { @style = "padding:10px 10px 10px 10px;text-decoration:none;color:white;background-color:red;" })
+        
+    </div>
+   
+</body>
+</html>
+

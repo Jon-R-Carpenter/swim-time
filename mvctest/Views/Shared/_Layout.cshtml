@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="@Url.Content("~/Content/Layout.css")" rel="stylesheet" type="text/css" />
+    
+</head>
+<body class="ewu_body">
+    <div id="wrapper">
+        <div id="header">
+          <img src="~/Images/logo_uh_color-template.png" />
+            <ul class="links">
+                <li><a href="https://www.ewu.edu" style="text-decoration:none">EWU Home</a></li>
+                <li><a href="http://www.ewu.edu/recreation/recreation-facilities/src-aquatic-center" style="text-decoration:none">Aquatic Center</a></li>
+            </ul>
+            <div id="nav-bar">
+                <ul class="topics">
+                    <li>@Html.ActionLink("User Sign", "Welcomee", "Home",null,new { id = "topicsLinks" })</li>
+                    <li>@Html.ActionLink("New-User", "UserIndex", "User",null,new { id = "topicsLinks" })</li>
+                    <li>@Html.ActionLink("Reports", "ReportIndex", "Reports", null, new { id = "topicsLinks" })</li>
+                    <li>@Html.ActionLink("Set-up", "SetUpIndex", "SetUp", null, new { id = "topicsLinks" })</li>
+                    <li>@Html.ActionLink("Manage Users", "AdminIndex", "Admin", null, new { id = "topicsLinks" })</li>
+                    <li>@Html.ActionLink("Log-off", "Logout", "Account", null, new { id = "topicsLinks" })</li>
+
+                </ul>
+            </div>
+            
+        </div>
+
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+ 
+</body>
+</html>
